@@ -1,4 +1,5 @@
-container = document.querySelector(".container");
+let container = document.querySelector(".container");
+let clearbtn = document.querySelector("#clear");
 
 let startingBoxCount = 10;
 let totalBoxes = startingBoxCount * startingBoxCount;
@@ -34,3 +35,13 @@ let pixelate = () => {
 
 pixelate();
 
+let clear = () => {
+    let allBoxes = document.querySelectorAll(".gridSquare");
+    allBoxes.forEach(box => {
+        clearbtn.addEventListener("click", () => {
+            box.style.background = "white"
+        })
+    })
+}
+
+clear();

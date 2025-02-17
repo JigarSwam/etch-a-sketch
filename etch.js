@@ -1,7 +1,8 @@
 let container = document.querySelector(".container");
-let clearbtn = document.querySelector("#clear");
+let clearBtn = document.querySelector("#clear");
+let gridSizeBtn = document.querySelector("#gridSize");
 
-let startingBoxCount = 10;
+let startingBoxCount = 16;
 let totalBoxes = startingBoxCount * startingBoxCount;
 
 const canvasWidth = container.clientWidth;
@@ -18,8 +19,36 @@ let createCanvas = () => {
         container.append(gridSquare);
     }
 }
-
 createCanvas();
+
+// clear previous grid
+let clearGrid = () => {
+    let allBoxes = document.querySelectorAll(".gridSquare");
+    allBoxes.forEach(box => {
+        box.remove();
+    })
+}
+
+// prompt user on click
+// capture values
+// update startingBoxCount
+let customGridSize = () => {
+    let newSize;
+    gridSizeBtn.addEventListener("click", () => {
+        newSize = prompt("How many boxes on a side? (Max 100)");
+        if (newSize > 100) {
+            newSize = prompt("Please input a value less than 100");
+        }
+        startingBoxCount = newSize;
+        totalBoxes = startingBoxCount * startingBoxCount;
+        console.log("BOXES:", startingBoxCount, totalBoxes)
+        clearGrid();
+        createCanvas();
+        pixelate();
+        clear();
+    })
+}
+customGridSize();
 
 // Hovering effect
 // when mouse hovers over a div
@@ -38,7 +67,7 @@ pixelate();
 let clear = () => {
     let allBoxes = document.querySelectorAll(".gridSquare");
     allBoxes.forEach(box => {
-        clearbtn.addEventListener("click", () => {
+        clearBtn.addEventListener("click", () => {
             box.style.background = "white"
         })
     })

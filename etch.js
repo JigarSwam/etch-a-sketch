@@ -15,7 +15,7 @@ let createCanvas = () => {
         gridSquare.setAttribute("class", "gridSquare");
         gridSquare.style.width = `${(startingBoxCount / totalBoxes) * 100}%`;
         gridSquare.style.height = `${(startingBoxCount / totalBoxes) * 100}%`;
-        gridSquare.textContent = `${i}`
+        // gridSquare.textContent = `${i}`
         container.append(gridSquare);
     }
 }
